@@ -1,23 +1,24 @@
 # Memory Bank Command Customization
 
-## Обзор
+## Overview
 
-Этот форк добавляет кастомизацию команд модов Memory Bank с сохранением полной обратной совместимости. Пользователи могут использовать как оригинальные команды, так и новые кастомные команды.
+// Start of Selection
+This fork adds customization of Memory Bank mod commands while maintaining full backward compatibility. Users can use both the original commands and the new custom commands
 
-## Новые команды
+## New Commands
 
-| Оригинальная команда | Новая команда | Режим | Описание |
-|---------------------|---------------|-------|----------|
-| `VAN` | `van` | VAN | Инициализация проекта |
-| `PLAN` | `plan` | PLAN | Планирование задач |
-| `CREATIVE` | `arh` | CREATIVE | Творческая фаза |
-| `IMPLEMENT` | `do` | IMPLEMENT | Реализация |
-| `QA` | `qa` | QA | Тестирование |
-| `REFLECT` | `sum` | REFLECT | Рефлексия |
+| Original Command | New Command | Mode | Description |
+|-------------------|-------------|------|-------------|
+| `VAN` | `van` | VAN | Project initialization |
+| `PLAN` | `plan` | PLAN | Task planning |
+| `CREATIVE` | `arh` | CREATIVE | Creative phase |
+| `IMPLEMENT` | `do` | IMPLEMENT | Implementation |
+| `QA` | `qa` | QA | Testing |
+| `REFLECT` | `sum` | REFLECT | Reflection |
 
-## Обратная совместимость
+## Backward Compatibility
 
-✅ **Все оригинальные команды продолжают работать:**
+✅ **All original commands continue to work:**
 - `VAN` → VAN Mode
 - `PLAN` → PLAN Mode
 - `CREATIVE` → CREATIVE Mode
@@ -26,12 +27,12 @@
 - `REFLECT` → REFLECT Mode
 - `ARCHIVE` → ARCHIVE Mode
 
-## Технические изменения
+## Technical Changes
 
-### Измененный файл
+### Modified File
 - `custom_modes/van_instructions.md`
 
-### Добавленные секции
+### Added Sections
 ```mermaid
 %% New Custom Commands
 CommandDetect -->|"van"| VAN
@@ -42,41 +43,41 @@ CommandDetect -->|"qa"| QA
 CommandDetect -->|"sum"| Reflect
 ```
 
-### Поддержка REFLECT & ARCHIVE
+### REFLECT & ARCHIVE Support
 ```mermaid
 CommandDetect -->|"REFLECT"| Reflect["REFLECT Mode"]
 CommandDetect -->|"ARCHIVE"| Archive["ARCHIVE Mode"]
 ```
 
-## Установка
+## Installation
 
-### Автоматическая установка
+### Automatic Installation
 ```bash
 chmod +x install.sh
 ./install.sh
 ```
 
-### Ручная установка
-1. Скопируйте `custom_modes/van_instructions.md` в вашу систему
-2. Создайте резервную копию оригинального файла
-3. Замените файл модифицированной версией
+### Manual Installation
+1. Copy `custom_modes/van_instructions.md` to your system
+2. Create a backup of the original file
+3. Replace the file with the modified version
 
-## Тестирование
+## Testing
 
-### Проверка новых команд
+### Checking New Commands
 ```bash
-# В Cursor введите команды:
-van    # Должно активировать VAN Mode
-plan   # Должно активировать PLAN Mode
-arh    # Должно активировать CREATIVE Mode
-do     # Должно активировать IMPLEMENT Mode
-qa     # Должно активировать QA Mode
-sum    # Должно активировать REFLECT Mode
+# In Cursor, enter commands:
+van    # Should activate VAN Mode
+plan   # Should activate PLAN Mode
+arh    # Should activate CREATIVE Mode
+do     # Should activate IMPLEMENT Mode
+qa     # Should activate QA Mode
+sum    # Should activate REFLECT Mode
 ```
 
-### Проверка обратной совместимости
+### Checking Backward Compatibility
 ```bash
-# Оригинальные команды должны продолжать работать:
+# Original commands should continue to work:
 VAN       # VAN Mode
 PLAN      # PLAN Mode
 CREATIVE  # CREATIVE Mode
@@ -86,26 +87,26 @@ REFLECT   # REFLECT Mode
 ARCHIVE   # ARCHIVE Mode
 ```
 
-## Преимущества
+## Advantages
 
-### Для пользователей
-- **Гибкость**: Выбор между оригинальными и кастомными командами
-- **Удобство**: Короткие команды для быстрого доступа
-- **Безопасность**: Оригинальные команды всегда доступны
+### For Users
+- **Flexibility**: Choice between original and custom commands
+- **Convenience**: Short commands for quick access
+- **Safety**: Original commands are always available
 
-### Для разработчиков
-- **Минимальные изменения**: Изменен только один файл
-- **Низкий риск**: Сохранена вся функциональность
-- **Простота сопровождения**: Легко обновлять и поддерживать
+### For Developers
+- **Minimal Changes**: Only one file modified
+- **Low Risk**: All functionality preserved
+- **Easy Maintenance**: Easy to update and maintain
 
-## Архитектура
+## Architecture
 
-### Подход к реализации
-- **Минимальный подход**: Изменен только `van_instructions.md`
-- **Централизованное управление**: Все команды в одном месте
-- **Расширяемость**: Легко добавлять новые команды
+### Implementation Approach
+- **Minimal Approach**: Only `van_instructions.md` modified
+- **Centralized Control**: All commands in one place
+- **Extensibility**: Easy to add new commands
 
-### Структура команд
+### Command Structure
 ```
 CommandDetect
 ├── Original Commands (VAN, PLAN, CREATIVE, etc.)
@@ -113,62 +114,62 @@ CommandDetect
     └── All point to same mode handlers
 ```
 
-## Восстановление
+## Recovery
 
-### Восстановление оригинального файла
+### Restoring Original File
 ```bash
 cp cursor-memory-bank/custom_modes/van_instructions.md.backup \
    cursor-memory-bank/custom_modes/van_instructions.md
 ```
 
-### Проверка восстановления
+### Checking Recovery
 ```bash
-# После восстановления оригинальные команды должны работать
-# Новые команды перестанут работать
+# After recovery, original commands should work
+# New commands will stop working
 ```
 
-## История изменений
+## Change History
 
-### Версия 1.0.0 (2024-12-19)
-- ✅ Добавлены новые команды: van, plan, arh, do, qa, sum
-- ✅ Сохранена обратная совместимость
-- ✅ Добавлена поддержка REFLECT & ARCHIVE
-- ✅ Создана документация и скрипты установки
-- ✅ Добавлены тестовые файлы
+### Version 1.0.0 (2024-12-19)
+- ✅ Added new commands: van, plan, arh, do, qa, sum
+- ✅ Maintained backward compatibility
+- ✅ Added REFLECT & ARCHIVE support
+- ✅ Created documentation and installation scripts
+- ✅ Added test files
 
-## Поддержка
+## Support
 
-### Проблемы и решения
-1. **Команды не работают**
-   - Проверьте правильность установки
-   - Убедитесь в корректности файла van_instructions.md
+### Issues and Solutions
+1. **Commands don't work**
+   - Check installation correctness
+   - Ensure van_instructions.md file is correct
 
-2. **Конфликты с другими модификациями**
-   - Создайте резервную копию перед установкой
-   - Проверьте совместимость
+2. **Conflicts with other modifications**
+   - Create backup before installation
+   - Check compatibility
 
-3. **Восстановление системы**
-   - Используйте резервную копию
-   - Переустановите оригинальный Memory Bank
+3. **System Recovery**
+   - Use backup copy
+   - Reinstall original Memory Bank
 
-### Обратная связь
-- Создайте Issue в репозитории
-- Опишите проблему подробно
-- Приложите логи ошибок
+### Feedback
+- Create Issue in repository
+- Describe problem in detail
+- Attach error logs
 
-## Будущие улучшения
+## Future Improvements
 
-### Планируемые функции
-- [ ] Дополнительные команды
-- [ ] Конфигурационный файл для команд
-- [ ] Автоматическое обновление
-- [ ] Интеграция с другими инструментами
+### Planned Features
+- [ ] Additional commands
+- [ ] Configuration file for commands
+- [ ] Automatic updates
+- [ ] Integration with other tools
 
-### Предложения
-- Отправляйте предложения через Issues
-- Описывайте use cases
-- Предлагайте новые команды
+### Suggestions
+- Send suggestions through Issues
+- Describe use cases
+- Suggest new commands
 
-## Лицензия
+## License
 
-Этот форк следует лицензии оригинального проекта Memory Bank. Все изменения совместимы с оригинальной лицензией. 
+This fork follows the license of the original Memory Bank project. All changes are compatible with the original license.
